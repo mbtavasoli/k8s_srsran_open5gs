@@ -4,9 +4,3 @@ kind: Kustomization
 resources:
 - iperf-deployment.yaml
 - iperf-service.yaml
-
-configMapGenerator:
-  - name: iperf-configmap
-    files:
-      - config/edit_pcap.sh
-      - config/replay_pcap.sh
