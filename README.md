@@ -178,7 +178,7 @@ To scale the CPU resources allocated to the gNB process, use the following scrip
 ```bash
 cd srsran_open5gs/scripts
 sh ./set_cgroup_cpu.sh 1500 # Allocates 1500 milli-cores (1.5 CPU)
-
+```
 
 ## References
 
