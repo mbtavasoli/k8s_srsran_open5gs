@@ -1,0 +1,50 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: iperf2-server
+  labels:
+    app: iperf2-server
+  annotations:
+    k8s.v1.cni.cncf.io/networks: '[
+      { "name": "n3network", "interface": "n3", "ips": [ "10.10.3.233/24" ] }
+      ]'
+spec:
+  # nodeSelector:
+  #   kubernetes.io/hostname: <node_name>
+  containers:
+  - name: iperf2-server
+    image: ubuntu
+    command: ["/bin/sh"]
+    args:
+    - "-c"
+    - "apt-get update && apt-get install -y iperf iputils-ping net-tools iproute2 tcpreplay && \
+    ip route add 10.41.0.0/24 via 10.10.3.1 dev n3 && \
+    iperf -s"
+    #    apt-get install python3-pip ; pip install netifaces scapy && \
+    lifecycle:
+      preStop:
+        exec:
+          command: ["/bin/sh", "-c", "rm -rf /mnt/modified_pcaps/5g/*"]
+    ports:
+    - containerPort: 5001
+    securityContext:
+      capabilities:
+        add: ["NET_ADMIN"]
+    volumeMounts:
+    - name: host-mount
+      mountPath: /mnt/
+    - mountPath: /config
+      name: iperf-volume
+  volumes:
+  - name: host-mount
+    hostPath:
+      path: /mnt/
+      type: Directory
+  - name: iperf-volume
+    configMap:
+      name: iperf-configmap
+      items:
+        - key: edit_pcap.sh
+          path: edit_pcap.sh
+        - key: replay_pcap.sh
+          path: replay_pcap.sh
