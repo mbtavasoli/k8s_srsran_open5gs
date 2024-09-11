@@ -178,3 +178,10 @@ To scale the CPU resources allocated to the gNB process, use the following scrip
 ```bash
 cd srsran_open5gs/scripts
 sh ./set_cgroup_cpu.sh 1500 # Allocates 1500 milli-cores (1.5 CPU)
+
+
+## References
+
+The guide is based on the work presented in the following paper:
+
+Sulaiman, M., Ahmadi, M., Salahuddin, M. A., Boutaba, R., & Saleh, A. (2023). [Generalizable Resource Scaling of 5G Slices using Constrained Reinforcement Learning](https://arxiv.org/abs/2306.09290). arXiv preprint arXiv:2306.09290.
