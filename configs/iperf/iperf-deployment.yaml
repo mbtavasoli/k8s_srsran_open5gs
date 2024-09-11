@@ -18,13 +18,8 @@ spec:
     args:
     - "-c"
     - "apt-get update && apt-get install -y iperf iputils-ping net-tools iproute2 tcpreplay && \
-    ip route add 10.41.0.0/24 via 10.10.3.1 dev n3 && \
-    iperf -s"
+    ip route add 10.41.0.0/24 via 10.10.3.1 dev n3"
     #    apt-get install python3-pip ; pip install netifaces scapy && \
-    lifecycle:
-      preStop:
-        exec:
-          command: ["/bin/sh", "-c", "rm -rf /mnt/modified_pcaps/5g/*"]
     ports:
     - containerPort: 5001
     securityContext:

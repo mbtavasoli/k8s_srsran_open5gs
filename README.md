@@ -171,6 +171,19 @@ The UE interfaces are created within the respective namespaces (`ue1` to `ue10`)
 
 You can use this method to send traffic from any UE to test connectivity.
 
+
+## (Optional) Reaching the UEs
+
+To reach the UEs, an `iperf` container is included. You can use this container to create a iperf client / servers and to generate traffic for the UEs. You can deploy the container using the following commands (assuming `10.41.0.2` as the UE IP address)
+
+```bash
+cd path/to/k8s_srsran_open5gs/config/iperf/
+kubectl apply -k . -n open5gs
+k8s-shell.sh iperf open5gs
+ping 10.41.0.2
+```
+
+
 ## (Optional) Step 6: CPU Resource Scaling
 
 To scale the CPU resources allocated to the gNB process, use the following script (requires Ubuntu 22.04+):
