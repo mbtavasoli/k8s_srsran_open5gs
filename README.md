@@ -15,7 +15,7 @@ This guide provides step-by-step instructions for deploying a testbed for srsRAN
 1. Clone the repository and add the `bin` directory to your `PATH`:
 
     ```bash
-    git clone <repo_url>
+    git clone https://github.com/sulaimanalmani/k8s_srsran_open5gs.git
     echo 'export PATH="/path/to/k8s_srsran_open5gs/bin:$PATH"' >> ~/.bashrc
     source ~/.bashrc
     cd /path/to/k8s_srsran_open5gs/
