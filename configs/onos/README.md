@@ -16,21 +16,21 @@ This guide provides step-by-step instructions for setting up a Software-Defined 
 
 ## Step 1: Install Kubernetes and Required Components
 
-1. Navigate to the `testbed_automator` directory and run the installation script:
-    
+Navigate to the `testbed_automator` directory and run the installation script:
+
     ```bash
     cd /path/to/k8s_srsran_open5gs/testbed_automator/
     ./install_k8s.sh
     ```
 
-2. Verify that Kubernetes is up and running:
+Verify that Kubernetes is up and running:
 
     ```bash
     kubectl get nodes
     kubectl get pods -A
     ```
 
-3. Remove the `control-plane` taint from the node:
+Remove the `control-plane` taint from the node:
 
     ```bash
     kubectl taint nodes <node-name> node-role.kubernetes.io/control-plane-
@@ -57,7 +57,6 @@ This step connects the physical interface to the OVS bridge, allowing ONOS to co
 
 > **Caution**: Modifying the network configuration might lead to a loss of SSH access. Ensure you have physical access to the machine or the ability to restore access without SSH. If access is lost, restore the original netplan file as follows:
 
-0. To restore the original netplan file in case of loss of SSH access:
     ```bash
     sudo netplan apply /etc/netplan/01-network-manager-all.yaml
     ```
@@ -92,16 +91,9 @@ This step connects the physical interface to the OVS bridge, allowing ONOS to co
         Port n4br
             Interface n4br
                 type: internal
-    Bridge n2br
-        Port n2br
-            Interface n2br
-                type: internal
     Bridge n3br
         Controller "tcp:<interface_ip>:31653"
         fail_mode: standalone
-        Port n3br
-            Interface n3br
-                type: internal
         Port vx_core
             Interface vx_core
                 type: vxlan
@@ -110,14 +102,6 @@ This step connects the physical interface to the OVS bridge, allowing ONOS to co
             Interface vx_ran
                 type: vxlan
                 options: {remote_ip="<ip of the RAN node>"}
-    Bridge br1
-        fail_mode: standalone
-        Port <interface_name>
-            Interface <interface_name>
-        Port br1
-            Interface br1
-                type: internal
-    ovs_version: "2.13.8"
     ```
 
 ## Step 4: Deploy ONOS
