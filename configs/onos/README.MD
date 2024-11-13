@@ -147,11 +147,6 @@ This step connects the physical interface to the OVS bridge, allowing ONOS to co
 4. Deploy ONOS Classic:
 
     ```bash
-    mkdir ~/onos/
-    helm pull onosproject/onos-classic --untar
-    vim ./onos-classic/charts/atomix/templates/pdb.yaml
-    # Change `policy/v1beta1` to `policy/v1`
-    cp ./values.yaml ~/onos/onos-classic/values.yaml
     helm install -n micro-onos onos-classic onos-classic/
     ```
 
@@ -178,7 +173,7 @@ This step connects the physical interface to the OVS bridge, allowing ONOS to co
     sudo sh ./list_queue.sh
     ```
 
-    Note the queue ID and update it in `update_queue.sh`.
+    Note the queue ID (`_uuid`) and update it in `update_queue.sh`.
 
 2. Install flow rules for slice traffic:
 
