@@ -47,8 +47,8 @@ This guide provides step-by-step instructions for setting up a Software-Defined 
 2. **On the Transit node**, add the following VXLAN tunnels:
 
     ```bash
-    sudo ovs-vsctl add-port br-int vx_ran -- set Interface vx_ran type=vxlan options:remote_ip=<ip of the RAN node>
-    sudo ovs-vsctl add-port br-int vx_core -- set Interface vx_core type=vxlan options:remote_ip=<ip of the Core node>
+    sudo ovs-vsctl add-port n3br vx_ran -- set Interface vx_ran type=vxlan options:remote_ip=<ip of the RAN node>
+    sudo ovs-vsctl add-port n3br vx_core -- set Interface vx_core type=vxlan options:remote_ip=<ip of the Core node>
     ```
 
 ## Step 3: Add Physical Interface to OVS Bridge
