@@ -193,6 +193,17 @@ cd srsran_open5gs/scripts
 sh ./set_cgroup_cpu.sh 1500 # Allocates 1500 milli-cores (1.5 CPU)
 ```
 
+## (Optional) Step 6: Setting up the Transport Network and Bandwidth Scaling
+
+Please refer to the [onos](configs/onos/README.md) section for setting up the transport network and bandwidth scaling.
+
+```bash
+cd srsran_open5gs/scripts
+sh ./set_bw.sh 10 # Allocates 10 Mbps bandwidth
+```
+
+Note that you must have ssh access to the transit node and a password less sudo access for the user on the transit node. For the latter, please refer to [stackoverflow](https://askubuntu.com/questions/147241/execute-sudo-without-password)
+
 ## References
 
 The guide is based on the work presented in the following paper:
