@@ -83,12 +83,6 @@ spec:
               - key: start_gnb.sh
                 path: start_gnb.sh
                 mode: 0777
-              - key: monitor_qos.sh
-                path: monitor_qos.sh
-                mode: 0755
-              - key: export_metrics.py
-                path: export_metrics.py
-                mode: 0755
         - name: varlog
           emptyDir: {}
         - name: host-mount
