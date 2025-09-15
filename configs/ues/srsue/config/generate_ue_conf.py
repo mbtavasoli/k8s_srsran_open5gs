@@ -34,8 +34,8 @@ file_max_size = 1000
 [usim]
 mode = soft
 algo = milenage
-opc  = E8ED289DEBA952E4283B54E88E6183CA
-k    = 465B5CE8B199B49FAA5F0A2EE238A6BC
+opc  = C42449363BBAD02B66D16BC975D77CC1
+k    = fec86ba6eb707ed08905757b1bb44b8f
 imsi = {imsi}
 imei = 356938035643803
 
