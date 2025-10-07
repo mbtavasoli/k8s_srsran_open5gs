@@ -3,9 +3,20 @@
 # To run the srsRAN Project gNB with this config, use the following command: 
 #   sudo ./gnb -c gnb_zmq.yaml
 
-amf:
-  addr: 10.10.3.200                  # The address or hostname of the AMF.
-  bind_addr: 10.10.3.231             # A local IP that the gNB binds to for traffic from the AMF.
+cu_cp:
+  amf:
+    addr: 10.10.3.200
+    port: 38412
+    bind_addr: 10.10.3.231
+    supported_tracking_areas:
+      - tac: 1
+        plmn_list:
+          - plmn: "00101"
+            tai_slice_support_list:
+              - sst: 1
+                sd: 000001
+              - sst: 2
+                sd: 000002
 
 ru_sdr:
   device_driver: zmq                # The RF driver name.
@@ -30,21 +41,40 @@ cell_cfg:
       dci_format_0_1_and_1_1: false # Set correct DCI format (fallback)
   prach:
     prach_config_index: 1           # Sets PRACH config to match what is expected by srsUE
-    total_nof_ra_preambles: 63      # Sets number of available PRACH preambles
+  pdsch:
+    mcs_table: qam64                # Sets PDSCH MCS to 64 QAM
+  pusch:
+    mcs_table: qam64     # Sets PUSCH MCS to 64 QAM
+  slicing:
+    -
+      sst: 1
+      sd: 000001
+    -
+      sst: 2
+      sd: 000002         
 
-# log:
-#   filename: /var/log/gnb.log            # Path of the log file.
-#   all_level: info                   # Logging level applied to all layers.
-#   hex_max_size: 0
+log:
+  filename: /tmp/gnb.log
+  all_level: warning
+  config_level: debug
 
-# pcap:
-#   mac_enable: false                 # Set to true to enable MAC-layer PCAPs.
-#   mac_filename: /tmp/gnb_mac.pcap   # Path where the MAC PCAP is stored.
-#   ngap_enable: false                # Set to true to enable NGAP PCAPs.
-#   ngap_filename: /tmp/gnb_ngap.pcap # Path where the NGAP PCAP is stored.
+metrics:
+  enable_log: true
+  autostart_stdout_metrics: true
+  enable_json: true
+  layers:
+    enable_ru: true
+    enable_sched: true
 
-slicing:
-  - sst: 1
-    sd: 000001
-  - sst: 2
-    sd: 000002
+pcap:
+  mac_enable: false
+  mac_filename: /tmp/gnb_mac.pcap
+  ngap_enable: false
+  ngap_filename: /tmp/gnb_ngap.pcap
+
+
+remote_control:
+  bind_addr: 0.0.0.0
+  enabled: true
+  port: 8001
+
