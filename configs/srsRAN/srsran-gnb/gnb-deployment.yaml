@@ -28,16 +28,16 @@ spec:
         - image: ghcr.io/ziyad-mabrouk/srsran-gnb:v1.0
           # imagePullPolicy: Always
           name: gnb
-          resizePolicy:
-          - resourceName: cpu
-            restartPolicy: NotRequired
-          resources:
-            requests:
-              memory: "3000Mi"
-              cpu: "50m"
-            limits:
-              memory: "3000Mi"
-              cpu: "5000m"
+          # resizePolicy:
+          # - resourceName: cpu
+          #   restartPolicy: NotRequired
+          # resources:
+          #   requests:
+          #     memory: "3000Mi"
+          #     cpu: "50m"
+          #   limits:
+          #     memory: "3000Mi"
+          #     cpu: "5000m"
           ports:
             - name: gnb-ue
               containerPort: 4997
