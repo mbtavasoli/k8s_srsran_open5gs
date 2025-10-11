@@ -3,26 +3,14 @@ apiVersion: v1
 kind: Service
 metadata:
   name: gnb-service
-  namespace: open5gs
   labels:
     app: srsran
     component: gnb
-  annotations:
-    prometheus.io/scrape: "true"
-    prometheus.io/port: "9126"
-    prometheus.io/path: "/metrics"
-    prometheus.io/scheme: "http"
 spec:
   type: ClusterIP
+  ports:
+    - port: 4997
+      protocol: UDP
   selector:
     app: srsran
     component: gnb
-  ports:
-    - name: gnb-ue
-      port: 4997
-      protocol: UDP
-      targetPort: 4997
-    - name: metrics
-      port: 9126
-      protocol: TCP
-      targetPort: 9126
