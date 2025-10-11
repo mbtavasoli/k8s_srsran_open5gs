@@ -25,6 +25,16 @@ spec:
       # nodeSelector:
       #   kubernetes.io/hostname: <node_name>
       containers:
+        - name: telegraf
+          image: ghcr.io/ziyad-mabrouk/telegraf:v1.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: metrics
+              containerPort: 9126
+              protocol: TCP
+          envFrom:
+            - configMapRef:
+                name: monitoring-config
         - image: ghcr.io/ziyad-mabrouk/srsran-gnb:v1.0
           # imagePullPolicy: Always
           name: gnb
