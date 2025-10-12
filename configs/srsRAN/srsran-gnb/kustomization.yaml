@@ -11,3 +11,21 @@ configMapGenerator:
       - config/srsran-gnb.yaml
       - config/wrapper.sh
       - config/start_gnb.sh
+  - name: monitoring-config
+    literals:
+      - WS_URL=127.0.0.1:8001
+      - TELEGRAF_VERSION=1.35.0
+      - TELEGRAF_INPUT_INTERVAL=1s
+      - TELEGRAF_OUTPUT_INTERVAL=1s
+      - TELEGRAF_BUFFER_LIMIT=10000
+      - INFLUXDB3_PORT=8081
+      - INFLUXDB3_HTTP_BIND_ADDR=0.0.0.0:8081
+      - INFLUXDB3_HOST_URL=http://127.0.0.1:8081
+      - INFLUXDB3_EXTERNAL_URL=http://influxdb:8081
+      - INFLUXDB3_AUTH_TOKEN=fake-token-1234567890abcdef
+      - INFLUXDB3_BUCKET=srsran
+      - INFLUXDB3_TESTBED=default
+      - INFLUXDB3_LOG_LEVEL=error
+      - INFLUXDB3_RATE_LIMIT=0
+      - INFLUXDB3_RATE_LIMIT_PERIOD=0s
+      - INFLUXDB3_AUTH_TOKEN_FILE=/run/secrets/token
