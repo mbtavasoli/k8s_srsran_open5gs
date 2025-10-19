@@ -25,7 +25,7 @@ spec:
       # nodeSelector:
       #   kubernetes.io/hostname: <node_name>
       containers:
-        - image: docker pull ghcr.io/ziyad-mabrouk/srsran-gnb-uhd:v1.0
+        - image: ghcr.io/ziyad-mabrouk/srsran-gnb-uhd:v1.0
           # imagePullPolicy: Always
           name: gnb
           resources:
